@@ -1,0 +1,10 @@
+.main-padding {
+  padding: 2rem;
+  background: #4d4df4;
+  margin-bottom: 30px;
+}
+.custom-anchor {
+  cursor: pointer !important;
+  color: #ffffff !important;
+  margin-right: 5px;
+}

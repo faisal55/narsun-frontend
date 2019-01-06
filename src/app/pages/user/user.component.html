@@ -1,0 +1,74 @@
+<div class="container">
+  <button class="btn btn-lg btn-outline-primary margin-bottom-30" (click)="open(content)">Add New User</button>
+  <div class="row">
+    <div class="col-lg-3">
+      <mat-card>
+        <mat-card-title>Available</mat-card-title>
+        <mat-card-content *ngFor="let user of users">
+          <mat-card-subtitle *ngIf="!user?.device">
+            {{user?.firstName+ ' ' + user?.lastName}}
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-lg-3">
+      <mat-card>
+        <mat-card-title>Taken</mat-card-title>
+        <mat-card-content *ngFor="let user of users">
+          <mat-card-subtitle *ngIf="user?.device">
+            {{user?.firstName+ ' ' + user?.lastName}}
+          </mat-card-subtitle>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit(f.value)" #f="ngForm">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="firstName" id="firstName" placeholder="First Name" ngModel
+                 required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" ngModel required>
+        </div>
+      </div>
+      <mat-form-field>
+      <mat-select placeholder="Favorite food">
+        <mat-option *ngFor="let device of devices.deviceName" [value]="device">
+          {{device}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+      <p>You selected: {{selectedDevice}}</p>
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<mat-form-field>
+  <mat-select placeholder="Favorite food">
+    <mat-option *ngFor="let device of devices.deviceName" [value]="device">
+      {{device}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+

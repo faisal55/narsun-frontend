@@ -1,0 +1,15 @@
+
+<div class="card mt-5" style="margin:auto;width: 600px;">
+  <div class="card-body">
+    <h5 class="card-title">Login to account</h5>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" id="username" placeholder="Enter Username" [(ngModel)]="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="login()">Login</button>
+  </div>
+</div>

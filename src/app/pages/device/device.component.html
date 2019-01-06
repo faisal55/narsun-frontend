@@ -1,0 +1,109 @@
+<div class="container">
+
+  <div id="products" class="row list-group">
+    <div class="item  col-xs-4 col-lg-4">
+      <div class="thumbnail" *ngFor="let device of devices">
+        <img class="group list-group-image" style="width: 250px;" [src]="device?.deviceImage" alt="" />
+        <div class="caption">
+          <h4 class="group inner list-group-item-heading" style="margin-top: 5px;">
+            {{device.deviceName}}</h4>
+          <p class="group inner list-group-item-text">
+            Expiry: {{device?.expiry}}</p>
+          <p class="group inner list-group-item-text">
+            Warranty: {{device?.warranty}}</p>
+          <div class="row">
+            <div class="col-xs-12 col-md-5">
+              <p class="lead">
+                Cost: {{device?.cost}}</p>
+            </div>
+            <div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">
+              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div class="item  col-xs-4 col-lg-4">-->
+      <!--<div class="thumbnail">-->
+        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
+        <!--<div class="caption">-->
+          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
+            <!--Product title</h4>-->
+          <!--<p class="group inner list-group-item-text">-->
+            <!--Expiry: 03-12-2023</p>-->
+          <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-md-5">-->
+              <!--<p class="lead">-->
+                <!--Cost: $21.000</p>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
+              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item  col-xs-4 col-lg-4">-->
+      <!--<div class="thumbnail">-->
+        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
+        <!--<div class="caption">-->
+          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
+            <!--Product title</h4>-->
+          <!--<p class="group inner list-group-item-text">-->
+            <!--Expiry: 03-12-2023</p>-->
+          <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-md-5">-->
+              <!--<p class="lead">-->
+                <!--Cost: $21.000</p>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
+              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item  col-xs-4 col-lg-4">-->
+      <!--<div class="thumbnail">-->
+        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
+        <!--<div class="caption">-->
+          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
+            <!--Product title</h4>-->
+          <!--<p class="group inner list-group-item-text">-->
+            <!--Expiry: 03-12-2023</p>-->
+          <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-md-5">-->
+              <!--<p class="lead">-->
+                <!--Cost: $21.000</p>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
+              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<div class="item  col-xs-4 col-lg-4">-->
+      <!--<div class="thumbnail">-->
+        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
+        <!--<div class="caption">-->
+          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
+            <!--Product title</h4>-->
+          <!--<p class="group inner list-group-item-text">-->
+            <!--Expiry: 03-12-2023</p>-->
+          <!--<div class="row">-->
+            <!--<div class="col-xs-12 col-md-5">-->
+              <!--<p class="lead">-->
+                <!--Cost: $21.000</p>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
+              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  </div>
+</div>
