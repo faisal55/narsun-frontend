@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UserComponent} from './user.component';
 import { UserRoutingModule} from './user-routing.module';
-import {MatCardModule, MatFormFieldModule} from '@angular/material';
+import {MatCardModule, MatFormFieldModule, MatInputModule} from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    MatInputModule,
     UserRoutingModule
   ],
   declarations: [UserComponent]

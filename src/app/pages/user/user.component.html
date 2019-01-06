@@ -1,23 +1,29 @@
 <div class="container">
   <button class="btn btn-lg btn-outline-primary margin-bottom-30" (click)="open(content)">Add New User</button>
   <div class="row">
-    <div class="col-lg-3">
+    <div class="col-lg-5">
       <mat-card>
         <mat-card-title>Available</mat-card-title>
         <mat-card-content *ngFor="let user of users">
           <mat-card-subtitle *ngIf="!user?.device">
             {{user?.firstName+ ' ' + user?.lastName}}
+            <button class="btn btn-danger" (click)="onDeleteUser(user)">Delete</button>
+            <button class="btn btn-primary" (click)="openUpdate(contentUpdate, user)">Assign Device</button>
           </mat-card-subtitle>
         </mat-card-content>
       </mat-card>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-5">
       <mat-card>
         <mat-card-title>Taken</mat-card-title>
         <mat-card-content *ngFor="let user of users">
-          <mat-card-subtitle *ngIf="user?.device">
+          <mat-card-subtitle *ngIf="user?.device && user?.device !== null">
             {{user?.firstName+ ' ' + user?.lastName}}
+
+            <button class="btn btn-danger" (click)="onDeleteUser(user)">Delete</button>
+            <button class="btn btn-primary" (click)="freeUser(user)">Available</button>
           </mat-card-subtitle>
+
         </mat-card-content>
       </mat-card>
     </div>
@@ -45,30 +51,59 @@
           <input type="text" class="form-control" name="lastName" id="lastName" placeholder="Last Name" ngModel required>
         </div>
       </div>
-      <mat-form-field>
-      <mat-select placeholder="Favorite food">
-        <mat-option *ngFor="let device of devices.deviceName" [value]="device">
-          {{device}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-
-      <p>You selected: {{selectedDevice}}</p>
-
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" ngModel [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let device of devices" [value]="device?.deviceName" (onSelectionChange)="selectedDevice(device)">
+            {{device?.deviceName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <!--<p>You selected: {{selectedDevice}}</p>-->
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
     </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
   </div>
 </ng-template>
 
-<mat-form-field>
-  <mat-select placeholder="Favorite food">
-    <mat-option *ngFor="let device of devices.deviceName" [value]="device">
-      {{device}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+
+<ng-template #contentUpdate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Assign User A Device</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onUpdateUser(f.value)" #f="ngForm">
+      <input type="hidden" name="_id" [ngModel]="editUser._id">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="firstName" placeholder="First Name" [(ngModel)]="editUser.firstName"
+                 required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="lastName" placeholder="Last Name" [(ngModel)]="editUser.lastName" required>
+        </div>
+      </div>
+      <mat-form-field class="example-full-width">
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="myControl" ngModel [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let device of devices" [value]="device?.deviceName" (onSelectionChange)="selectedDevice(device)">
+            {{device?.deviceName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Assign</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
 
 
 

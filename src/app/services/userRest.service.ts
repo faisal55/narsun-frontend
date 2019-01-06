@@ -19,4 +19,8 @@ export class UserRestService {
     return this._rest.delete('/user/' + param._id, param);
   }
 
+  public updateUser(param: any) {
+    return this._rest.put('/user/' + param._id, param);
+  }
+
 }

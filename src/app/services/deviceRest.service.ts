@@ -18,5 +18,8 @@ export class DeviceRestService {
   public deleteDevice(param: any) {
     return this._rest.delete('/device/' + param._id, param);
   }
+  public updateDevice(param: any) {
+    return this._rest.put('/device/' + param._id, param);
+  }
 
 }

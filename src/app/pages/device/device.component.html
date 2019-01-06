@@ -1,5 +1,5 @@
 <div class="container">
-
+  <button class="btn btn-lg btn-outline-primary margin-bottom-30" (click)="open(content)">Add New Device</button>
   <div id="products" class="row list-group">
     <div class="item  col-xs-4 col-lg-4">
       <div class="thumbnail" *ngFor="let device of devices">
@@ -16,94 +16,92 @@
               <p class="lead">
                 Cost: {{device?.cost}}</p>
             </div>
-            <div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">
-              <a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>
-            </div>
+          </div>
+          <div class="row">
+          <div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">
+            <button class="btn btn-danger" (click)="deleteDevice(device)">Delete Device</button>
+          </div>
+          <div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">
+            <button class="btn btn-primary" (click)="onEditDevice(contentUpdate ,device)">Edit Device</button>
+          </div>
           </div>
         </div>
       </div>
     </div>
-
-
-    <!--<div class="item  col-xs-4 col-lg-4">-->
-      <!--<div class="thumbnail">-->
-        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
-        <!--<div class="caption">-->
-          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
-            <!--Product title</h4>-->
-          <!--<p class="group inner list-group-item-text">-->
-            <!--Expiry: 03-12-2023</p>-->
-          <!--<div class="row">-->
-            <!--<div class="col-xs-12 col-md-5">-->
-              <!--<p class="lead">-->
-                <!--Cost: $21.000</p>-->
-            <!--</div>-->
-            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
-              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="item  col-xs-4 col-lg-4">-->
-      <!--<div class="thumbnail">-->
-        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
-        <!--<div class="caption">-->
-          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
-            <!--Product title</h4>-->
-          <!--<p class="group inner list-group-item-text">-->
-            <!--Expiry: 03-12-2023</p>-->
-          <!--<div class="row">-->
-            <!--<div class="col-xs-12 col-md-5">-->
-              <!--<p class="lead">-->
-                <!--Cost: $21.000</p>-->
-            <!--</div>-->
-            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
-              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="item  col-xs-4 col-lg-4">-->
-      <!--<div class="thumbnail">-->
-        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
-        <!--<div class="caption">-->
-          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
-            <!--Product title</h4>-->
-          <!--<p class="group inner list-group-item-text">-->
-            <!--Expiry: 03-12-2023</p>-->
-          <!--<div class="row">-->
-            <!--<div class="col-xs-12 col-md-5">-->
-              <!--<p class="lead">-->
-                <!--Cost: $21.000</p>-->
-            <!--</div>-->
-            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
-              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-    <!--<div class="item  col-xs-4 col-lg-4">-->
-      <!--<div class="thumbnail">-->
-        <!--<img class="group list-group-image" style="width: 250px;" src="http://placehold.it/400x250/000/fff" alt="" />-->
-        <!--<div class="caption">-->
-          <!--<h4 class="group inner list-group-item-heading" style="margin-top: 5px;">-->
-            <!--Product title</h4>-->
-          <!--<p class="group inner list-group-item-text">-->
-            <!--Expiry: 03-12-2023</p>-->
-          <!--<div class="row">-->
-            <!--<div class="col-xs-12 col-md-5">-->
-              <!--<p class="lead">-->
-                <!--Cost: $21.000</p>-->
-            <!--</div>-->
-            <!--<div class="col-xs-12 col-md-4" style="margin-top: -11px; padding: 0">-->
-              <!--<a class="btn btn-success" href="http://www.jquery2dotnet.com">Edit Device</a>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add Device</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="createDevice(f.value)" #f="ngForm">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="deviceName" placeholder="Device Name" ngModel
+                 required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="cost" placeholder="Device Cost" ngModel required>
+        </div>
+      </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Enter expiry" name="expiry" ngModel>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="warranty" placeholder="Warranty" ngModel required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #contentUpdate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Update Device</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="updateDevice(f.value)" #f="ngForm">
+      <input type="hidden" name="_id" [ngModel]="editDevice._id">
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="deviceName" placeholder="Device Name" [(ngModel)]="editDevice.deviceName"
+                 required>
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="cost" placeholder="Device Cost" [(ngModel)]="editDevice.cost" required>
+        </div>
+      </div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Enter expiry" name="expiry" [(ngModel)]="editDevice.expiry">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div class="form-group row">
+        <div class="col-md-12">
+          <input type="text" class="form-control" name="warranty" placeholder="Warranty" [(ngModel)]="editDevice.warranty"  required>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Update</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

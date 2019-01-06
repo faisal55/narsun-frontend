@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/authRest.service';
 import {Router} from '@angular/router';
-import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,8 +18,8 @@ export class LoginComponent implements OnInit {
   }
   login() {
     if (this.password !== this.random || this.username !== 'admin') {
+      alert('Wrong Username Or Password. Hint* username: admin & check console for the password :)');
       return false;
-      alert('Wrong Username Or Password');
     } else {
       this.auth.sendToken(this.username + this.password);
       this.router.navigate(['device']);
